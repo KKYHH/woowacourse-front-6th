@@ -24,6 +24,7 @@ const InputView = {
             Validator.validateBeverageOnly(orders);
             orders.forEach(order => Validator.validateMenuItem(order.name));
             orders.forEach(order => Validator.validateOrderCount(order.count));
+
             return input;
 
         } catch (error) {

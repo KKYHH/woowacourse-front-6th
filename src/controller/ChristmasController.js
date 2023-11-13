@@ -5,10 +5,13 @@ class ChristmasController {
 
   async startReservation() {
     try {
-      OutputView.helloChristmas();
-      await InputView.readDate();
-      await InputView.orderMenu();
-      // console.log(InputView.orderMenu());
+      OutputView.printHello();
+
+      const inputDate = await InputView.readDate();
+      const orderMenu = await InputView.orderMenu();
+
+      OutputView.printBenefitPreviewConsole(inputDate);
+      OutputView.printMenu(orderMenu);
 
     } catch (error) {
       throw new Error(error);
