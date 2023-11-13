@@ -3,10 +3,16 @@ import InputView from "../View/InputView.js";
 class ChristmasController {
 
 
-  startReservation() {
-    OutputView.helloChristmas();
-    InputView.readDate();
+  async startReservation() {
+    try {
+      OutputView.helloChristmas();
+      await InputView.readDate();
+      await InputView.orderMenu();
+      // console.log(InputView.orderMenu());
 
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
 }
