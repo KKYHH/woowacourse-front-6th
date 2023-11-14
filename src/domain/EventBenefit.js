@@ -1,6 +1,6 @@
-import { Console } from '@woowacourse/mission-utils';
 import DecemberCalendar from "../utils/decemberCalendar.js";
 import ParseOrders from "./ParseOrders.js";
+import ParsePrice from "./ParesPrice.js";
 import menu from "../utils/Menu.js";
 
 class EventBenefit {
@@ -12,9 +12,9 @@ class EventBenefit {
     if (currentDate >= 1 && currentDate <= christmasDate) {
       const discountAmount = (currentDate - 1) * 100 + 1000;
       return discountAmount;
-    }
+    };
     return 0;
-  }
+  };
 
   static weekdayDiscount(inputDate, orderMenu) {
     const currentDate = parseInt(inputDate);
@@ -29,10 +29,10 @@ class EventBenefit {
         discountPerItem = orders
           .filter(order => dessertMenuItems.includes(order.name))
           .reduce((acc, order) => acc + order.count, 0) * 2023;
-      }
-    }
+      };
+    };
     return discountPerItem;
-  }
+  };
 
 
   static weekendDiscount(inputDate, orderMenu) {
@@ -47,17 +47,27 @@ class EventBenefit {
         discountPerItem = orders
           .filter(order => mainMenuItems.includes(order.name))
           .reduce((acc, order) => acc + order.count, 0) * 2023;
-      }
-    }
+      };
+    };
     return discountPerItem;
-  }
+  };
 
   static specialDiscount(inputDate) {
     const currentDate = parseInt(inputDate);
     const isStarDay = DecemberCalendar[currentDate]?.hasStar;
 
     return isStarDay ? 1000 : 0;
-  }
+  };
+
+  static giveChampagne(orderMenu) {
+    const totalAmount = ParsePrice.calculateTotalPrice(orderMenu);
+    let giveChampagneBenefit = 0;
+
+    if (Number(totalAmount.replace(/,/g, '')) > 120000) {
+      giveChampagneBenefit = 25000
+    }
+    return giveChampagneBenefit;
+  };
 
 
   static eventDiscountDuringPeriod(inputDate, orderMenu) {
@@ -65,11 +75,11 @@ class EventBenefit {
     const discountWeekday = this.weekdayDiscount(inputDate, orderMenu);
     const discountWeekend = this.weekendDiscount(inputDate, orderMenu);
     const isStarDay = this.specialDiscount(inputDate);
+    const isChampagne = this.giveChampagne(orderMenu);
 
-    const totalEventDiscount = discountChrismasDay + discountWeekday + discountWeekend + isStarDay;
-    Console.print(`총 혜택 금액: -${totalEventDiscount}원`);
-  }
-
-}
+    const totalEventDiscount = discountChrismasDay + discountWeekday + discountWeekend + isStarDay + isChampagne;
+    return totalEventDiscount;
+  };
+};
 
 export default EventBenefit;

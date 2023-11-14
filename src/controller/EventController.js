@@ -14,6 +14,7 @@ class EventController {
       OutputView.printOriginalOrderTotal(orderMenu);
       OutputView.printGiftMenu(orderMenu);
       OutputView.printBenefitList(inputDate, orderMenu);
+      OutputView.printTotalbenefit(inputDate, orderMenu);
 
     } catch (error) {
       throw new Error(error);
