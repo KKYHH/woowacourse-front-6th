@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils'
-import InputView from './InputView.js';
+import ParseOrders from '../domain/ParseOrders.js';
+import ParsePrice from '../domain/ParesPrice.js';
 
 const OutputView = {
 
@@ -20,7 +21,17 @@ const OutputView = {
             const itemCount = count.trim() === '1' ? '1개' : `${count.trim()}개`;
             Console.print(`${menu.trim()} ${itemCount}`);
         });
+    },
+
+    printOriginalOrderTotal(orderMenu) {
+        Console.print(`\n<할인 전 총주문 금액>`)
+        const totalAmount = ParsePrice.calculateTotalPrice(orderMenu);
+
+        Console.print(`${totalAmount}원`);
+
     }
+
+
 }
 
 export default OutputView;

@@ -1,8 +1,9 @@
-import ChristmasController from "./controller/ChristmasController.js";
+import EventController from "./controller/EventController.js";
 class App {
   async run() {
-    const chirstmasController = new ChristmasController;
-    chirstmasController.startReservation();
+    const eventController = new EventController();
+    eventController.inputReservation();
+    eventController.outputReservation();
   }
 }
 

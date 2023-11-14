@@ -1,23 +1,25 @@
 import OutputView from "../View/OutputView.js";
 import InputView from "../View/InputView.js";
-class ChristmasController {
 
+class EventController {
 
-  async startReservation() {
+  async inputReservation() {
     try {
       OutputView.printHello();
-
       const inputDate = await InputView.readDate();
       const orderMenu = await InputView.orderMenu();
-
       OutputView.printBenefitPreviewConsole(inputDate);
       OutputView.printMenu(orderMenu);
+      OutputView.printOriginalOrderTotal(orderMenu);
 
     } catch (error) {
       throw new Error(error);
     }
   }
 
+  outputReservation() {
+
+  }
 }
 
-export default ChristmasController;
+export default EventController;
