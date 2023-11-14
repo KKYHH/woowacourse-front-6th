@@ -1,6 +1,5 @@
 import OutputView from "../View/OutputView.js";
 import InputView from "../View/InputView.js";
-import DecemberCalendar from "../utils/decemberCalendar.js";
 
 class EventController {
 
@@ -15,7 +14,7 @@ class EventController {
       OutputView.printGiftMenu(orderMenu);
       OutputView.printBenefitList(inputDate, orderMenu);
       OutputView.printTotalbenefit(inputDate, orderMenu);
-
+      OutputView.printFinalPayment(inputDate, orderMenu);
     } catch (error) {
       throw new Error(error);
     }

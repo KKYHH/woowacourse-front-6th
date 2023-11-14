@@ -13,7 +13,7 @@ class ParsePrice {
       }
     });
 
-    return totalAmount.toLocaleString();
+    return totalAmount;
   }
 }
 
