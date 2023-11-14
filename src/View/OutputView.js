@@ -46,10 +46,13 @@ const OutputView = {
     },
 
 
-    printBenefitList(inputDate) {
+    printBenefitList(inputDate, orderMenu) {
         Console.print(`\n<총혜택 금액>`);
         const discountAmount = EventBenefit.christmasDayDiscount(inputDate);
         Console.print(`-${discountAmount}원`);
+        const weekdayDiscount = EventBenefit.weekdayDiscount(inputDate, orderMenu);
+        Console.print(`-${weekdayDiscount}원`)
+
     }
 
 
