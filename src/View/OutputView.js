@@ -114,6 +114,21 @@ const OutputView = {
     printFinalPayment(inputDate, orderMenu) {
         const finalpayment = EventBenefit.calculateFinalPayment(inputDate, orderMenu);
         Console.print(`\n<할인 후 예상 결제 금액>\n${finalpayment.toLocaleString()}원`);
+    },
+
+    printEventBadges(inputDate, orderMenu) {
+        Console.print(`\n<12월 이벤트 배지>`)
+        const grantingBadges = EventBenefit.eventDiscountDuringPeriod(inputDate, orderMenu);
+
+        const badge =
+            grantingBadges >= 20000 ? '산타' :
+                grantingBadges >= 10000 ? '트리' :
+                    grantingBadges >= 5000 ? '별' :
+                        '없음';
+
+        if (badge) {
+            Console.print(badge);
+        }
     }
 
 

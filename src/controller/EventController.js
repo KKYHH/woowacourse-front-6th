@@ -15,6 +15,7 @@ class EventController {
       OutputView.printBenefitList(inputDate, orderMenu);
       OutputView.printTotalbenefit(inputDate, orderMenu);
       OutputView.printFinalPayment(inputDate, orderMenu);
+      OutputView.printEventBadges(inputDate, orderMenu);
     } catch (error) {
       throw new Error(error);
     }
