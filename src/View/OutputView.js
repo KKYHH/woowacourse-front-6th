@@ -52,7 +52,8 @@ const OutputView = {
         Console.print(`-${discountAmount}원`);
         const weekdayDiscount = EventBenefit.weekdayDiscount(inputDate, orderMenu);
         Console.print(`-${weekdayDiscount}원`)
-
+        const weekendDiscount = EventBenefit.weekendDiscount(inputDate, orderMenu);
+        Console.print(`-${weekendDiscount}원`)
     }
 
 

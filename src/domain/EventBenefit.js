@@ -34,10 +34,25 @@ class EventBenefit {
   }
 
 
-  weekendDiscount() {
+  static weekendDiscount(inputDate, orderMenu) {
+    const currentDate = parseInt(inputDate);
+    let discountPerItem = 0;
 
+    if (currentDate % 7 === 1 || currentDate % 7 === 2) {
+      const orders = ParseOrders.parse(orderMenu);
+      const mainMenuItems = menu.main.items.map(item => item.name);
+
+      if (mainMenuItems.some(item => orders.some(order => order.name === item))) {
+        discountPerItem = orders
+          .filter(order => mainMenuItems.includes(order.name))
+          .reduce((acc, order) => acc + order.count, 0) * 2023;
+      }
+    }
+    return discountPerItem;
   }
+
   specialDiscount() {
+
 
   }
   eventDiscountDuringPeriod() {
