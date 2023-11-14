@@ -1,7 +1,6 @@
 import { Console } from '@woowacourse/mission-utils'
 import ParsePrice from '../domain/ParesPrice.js';
 import EventBenefit from '../domain/EventBenefit.js';
-import InputView from './InputView.js';
 
 const OutputView = {
 
@@ -93,27 +92,40 @@ const OutputView = {
 
     printBenefitList(inputDate, orderMenu) {
         Console.print(`\n<혜택 내역>`);
-        const hasBenefit = [
-            this.printBenefitChrismas(inputDate),
-            this.printBenefitWeekday(inputDate, orderMenu),
-            this.printBenefitWeekend(inputDate, orderMenu),
-            this.printBenfitSpecial(inputDate),
-            this.printGift(orderMenu),
-        ].some((benefitExists) => benefitExists);
+        const totalAmount = ParsePrice.calculateTotalPrice(orderMenu);
+        if (totalAmount >= 10000) {
+            const hasBenefit = [
+                this.printBenefitChrismas(inputDate),
+                this.printBenefitWeekday(inputDate, orderMenu),
+                this.printBenefitWeekend(inputDate, orderMenu),
+                this.printBenfitSpecial(inputDate),
+                this.printGift(orderMenu),
+            ].some((benefitExists) => benefitExists);
 
-        if (!hasBenefit) {
+            if (!hasBenefit) {
+                Console.print('없음');
+            }
+        } else {
             Console.print('없음');
         }
     },
 
     printTotalbenefit(inputDate, orderMenu) {
-        const eventDiscountDuringPeriod = EventBenefit.eventDiscountDuringPeriod(inputDate, orderMenu);
-        Console.print(`\n<총혜택 금액>\n-${eventDiscountDuringPeriod.toLocaleString()}원`);
+        const totalAmount = ParsePrice.calculateTotalPrice(orderMenu);
+        if (totalAmount >= 10000) {
+            const eventDiscountDuringPeriod = EventBenefit.eventDiscountDuringPeriod(inputDate, orderMenu);
+            Console.print(`\n<총혜택 금액>\n-${eventDiscountDuringPeriod.toLocaleString()}원`);
+        }
     },
 
     printFinalPayment(inputDate, orderMenu) {
-        const finalpayment = EventBenefit.calculateFinalPayment(inputDate, orderMenu);
-        Console.print(`\n<할인 후 예상 결제 금액>\n${finalpayment.toLocaleString()}원`);
+        const totalAmount = ParsePrice.calculateTotalPrice(orderMenu);
+        if (totalAmount >= 10000) {
+            const finalpayment = EventBenefit.calculateFinalPayment(inputDate, orderMenu);
+            Console.print(`\n<할인 후 예상 결제 금액>\n${finalpayment.toLocaleString()}원`);
+        } else {
+            Console.print(`\n<할인 후 예상 결제 금액>\n${totalAmount.toLocaleString()}원`);
+        }
     },
 
     printEventBadges(inputDate, orderMenu) {

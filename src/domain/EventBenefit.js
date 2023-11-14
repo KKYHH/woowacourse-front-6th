@@ -18,7 +18,6 @@ class EventBenefit {
 
   static weekdayDiscount(inputDate, orderMenu) {
     const currentDate = parseInt(inputDate);
-    // const dayOfWeek = DecemberCalendar[currentDate].day;
     let discountPerItem = 0;
 
     if (currentDate % 7 !== 1 && currentDate % 7 !== 2) {
@@ -30,8 +29,9 @@ class EventBenefit {
           .filter(order => dessertMenuItems.includes(order.name))
           .reduce((acc, order) => acc + order.count, 0) * 2023;
       }
+      return discountPerItem;
     }
-    return discountPerItem;
+    return 0;
   }
 
 
@@ -48,8 +48,9 @@ class EventBenefit {
           .filter(order => mainMenuItems.includes(order.name))
           .reduce((acc, order) => acc + order.count, 0) * 2023;
       }
+      return discountPerItem;
     }
-    return discountPerItem;
+    return 0;
   }
 
   static specialDiscount(inputDate) {
@@ -92,6 +93,7 @@ class EventBenefit {
     const finalPayment = beforePrice - benefitPrice;
     return finalPayment;
   }
+
 }
 
 export default EventBenefit;
