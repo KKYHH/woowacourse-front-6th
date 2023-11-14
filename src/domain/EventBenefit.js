@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import DecemberCalendar from "../utils/decemberCalendar.js";
 import ParseOrders from "./ParseOrders.js";
 import menu from "../utils/Menu.js";
@@ -51,13 +52,24 @@ class EventBenefit {
     return discountPerItem;
   }
 
-  specialDiscount() {
+  static specialDiscount(inputDate) {
+    const currentDate = parseInt(inputDate);
+    const isStarDay = DecemberCalendar[currentDate]?.hasStar;
 
-
+    return isStarDay ? 1000 : 0;
   }
-  eventDiscountDuringPeriod() {
 
+
+  static eventDiscountDuringPeriod(inputDate, orderMenu) {
+    const discountChrismasDay = this.christmasDayDiscount(inputDate);
+    const discountWeekday = this.weekdayDiscount(inputDate, orderMenu);
+    const discountWeekend = this.weekendDiscount(inputDate, orderMenu);
+    const isStarDay = this.specialDiscount(inputDate);
+
+    const totalEventDiscount = discountChrismasDay + discountWeekday + discountWeekend + isStarDay;
+    Console.print(`총 혜택 금액: -${totalEventDiscount}원`);
   }
+
 }
 
 export default EventBenefit;
