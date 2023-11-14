@@ -1,9 +1,10 @@
 import OutputView from "../View/OutputView.js";
 import InputView from "../View/InputView.js";
+import DecemberCalendar from "../utils/decemberCalendar.js";
 
 class EventController {
 
-  async inputReservation() {
+  async startReservation() {
     try {
       OutputView.printHello();
       const inputDate = await InputView.readDate();
@@ -11,15 +12,14 @@ class EventController {
       OutputView.printBenefitPreviewConsole(inputDate);
       OutputView.printMenu(orderMenu);
       OutputView.printOriginalOrderTotal(orderMenu);
+      OutputView.printGiftMenu(orderMenu);
+      OutputView.printBenefitList(inputDate);
 
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  outputReservation() {
-
-  }
 }
 
 export default EventController;

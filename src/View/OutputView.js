@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils'
-import ParseOrders from '../domain/ParseOrders.js';
 import ParsePrice from '../domain/ParesPrice.js';
+import EventBenefit from '../domain/EventBenefit.js';
+import InputView from './InputView.js';
 
 const OutputView = {
 
@@ -28,7 +29,27 @@ const OutputView = {
         const totalAmount = ParsePrice.calculateTotalPrice(orderMenu);
 
         Console.print(`${totalAmount}원`);
+    },
 
+    printGiftMenu(orderMenu) {
+        Console.print(`\n<증정 메뉴>`)
+        const totalAmount = ParsePrice.calculateTotalPrice(orderMenu);
+        const formattedTotalAmount = Number(totalAmount.replace(/,/g, ''));
+
+        if (formattedTotalAmount > 120000) {
+            Console.print('샴페인 1개')
+        }
+
+        if (formattedTotalAmount < 120000) {
+            Console.print('없음')
+        }
+    },
+
+
+    printBenefitList(inputDate) {
+        Console.print(`\n<총혜택 금액>`);
+        const discountAmount = EventBenefit.christmasDayDiscount(inputDate);
+        Console.print(`-${discountAmount}원`);
     }
 
 
