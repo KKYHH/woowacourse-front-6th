@@ -1,4 +1,4 @@
-import menu from "../utils/Menu.js";
+import MENU from "../utils/Menu.js";
 import Validator from "../utils/Validator.js";
 
 class ParseOrders {
@@ -19,7 +19,7 @@ class ParseOrders {
   }
 
   static findMenuItem(menuName) {
-    const foundItem = Object.values(menu).flatMap(category => category.items)
+    const foundItem = Object.values(MENU).flatMap(category => category.items)
       .find(item => item.name === menuName);
 
     return foundItem || null;

@@ -1,5 +1,5 @@
 import ParseOrders from "../domain/ParseOrders.js";
-import menu from "./Menu.js";
+import MENU from "./Menu.js";
 class Validator {
 
   static dateInput(input) {
@@ -64,7 +64,7 @@ class Validator {
 
   // 음료만 주문시 에러
   static validateBeverageOnly(orders) {
-    const isBeverageOnly = orders.every(order => menu.drink.items.some(item => item.name === order.name));
+    const isBeverageOnly = orders.every(order => MENU.drink.items.some(item => item.name === order.name));
     const isNonEmpty = orders.length > 0;
 
     if (isBeverageOnly && isNonEmpty) {

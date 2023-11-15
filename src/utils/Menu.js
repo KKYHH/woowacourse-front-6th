@@ -1,4 +1,4 @@
-const menu = {
+const MENU = {
   appetizer: {
     items: [
       { name: '양송이수프', price: 6000 },
@@ -29,4 +29,4 @@ const menu = {
   }
 };
 
-export default menu;
+export default MENU;

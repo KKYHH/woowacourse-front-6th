@@ -1,7 +1,7 @@
 import DecemberCalendar from "../utils/decemberCalendar.js";
 import ParseOrders from "./ParseOrders.js";
 import ParsePrice from "./ParesPrice.js";
-import menu from "../utils/Menu.js";
+import MENU from "../utils/Menu.js";
 
 class EventBenefit {
 
@@ -22,7 +22,7 @@ class EventBenefit {
 
     if (currentDate % 7 !== 1 && currentDate % 7 !== 2) {
       const orders = ParseOrders.parse(orderMenu);
-      const dessertMenuItems = menu.dessert.items.map(item => item.name);
+      const dessertMenuItems = MENU.dessert.items.map(item => item.name);
 
       if (dessertMenuItems.some(item => orders.some(order => order.name === item))) {
         discountPerItem = orders
@@ -41,7 +41,7 @@ class EventBenefit {
 
     if (currentDate % 7 === 1 || currentDate % 7 === 2) {
       const orders = ParseOrders.parse(orderMenu);
-      const mainMenuItems = menu.main.items.map(item => item.name);
+      const mainMenuItems = MENU.main.items.map(item => item.name);
 
       if (mainMenuItems.some(item => orders.some(order => order.name === item))) {
         discountPerItem = orders
