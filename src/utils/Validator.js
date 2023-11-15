@@ -14,7 +14,7 @@ class Validator {
   // 메뉴는 20개 까지
   static menuInput(input) {
     if (this.totalItemCount(input) > 20) {
-      throw new Error('[ERROR] 한 번에 최대 20개까지만 주문할 수 있습니다. 다시 입력해 주세요.');
+      throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
     }
   }
 
@@ -26,21 +26,21 @@ class Validator {
   static validateMenuFormat(input) {
     const menuFormatRegex = /^([a-zA-Z가-힣]+-\d+)(,([a-zA-Z가-힣]+-\d+))*$/;
     if (!menuFormatRegex.test(input)) {
-      throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요. 입력형식')
+      throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.')
     }
   }
 
   // 메뉴판에 없는 메뉴입력시 에러
   static validateMenuItem(menuItem) {
     if (!menuItem) {
-      throw new Error(`[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요. 메뉴판에없음`);
+      throw new Error(`[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.`);
     }
   }
 
   // 메뉴가 1개 이상이 아닐시 에러
   static validateOrderCount(parsedCount) {
     if (isNaN(parsedCount) || parsedCount < 1) {
-      throw new Error(`[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요. 메뉴는1개이상`);
+      throw new Error(`[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.`);
     }
   }
 
@@ -58,7 +58,7 @@ class Validator {
     });
 
     if (duplicateMenus.size > 0) {
-      throw new Error(`[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요. 중복`);
+      throw new Error(`[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.`);
     }
   }
 
@@ -68,7 +68,7 @@ class Validator {
     const isNonEmpty = orders.length > 0;
 
     if (isBeverageOnly && isNonEmpty) {
-      throw new Error(`[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.`);
+      throw new Error(`[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.`);
     }
   }
 

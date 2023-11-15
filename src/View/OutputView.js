@@ -130,7 +130,7 @@ const OutputView = {
                         '없음';
 
         if (badge) {
-            Console.print(badge);
+            Console.print(`${badge}\n`);
         }
     }
 }

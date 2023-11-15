@@ -5,7 +5,6 @@ class ParseOrders {
 
   static parse(input) {
     const orders = input.split(',');
-    Validator.validateMenuFormat(input);
 
     return orders.map(order => {
       const [menuName, count] = order.split('-');
@@ -14,7 +13,6 @@ class ParseOrders {
       Validator.validateMenuItem(menuItem, menuName);
 
       const parsedCount = parseInt(count);
-      Validator.validateOrderCount(parsedCount);
 
       return { name: menuName, count: parsedCount };
     });
