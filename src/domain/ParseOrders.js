@@ -26,8 +26,6 @@ class ParseOrders {
 
     return foundItem || null;
   }
-
-
 }
 
 export default ParseOrders;

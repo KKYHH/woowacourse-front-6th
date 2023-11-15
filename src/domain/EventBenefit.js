@@ -70,7 +70,6 @@ class EventBenefit {
     return giveChampagneBenefit;
   }
 
-
   static eventDiscountDuringPeriod(inputDate, orderMenu) {
     const discountChrismasDay = this.christmasDayDiscount(inputDate);
     const discountWeekday = this.weekdayDiscount(inputDate, orderMenu);
@@ -93,7 +92,6 @@ class EventBenefit {
     const finalPayment = beforePrice - benefitPrice;
     return finalPayment;
   }
-
 }
 
 export default EventBenefit;

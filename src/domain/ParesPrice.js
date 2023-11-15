@@ -1,4 +1,3 @@
-
 import ParseOrders from "./ParseOrders.js";
 
 class ParsePrice {
@@ -12,10 +11,8 @@ class ParsePrice {
         totalAmount += menuItem.price * order.count;
       }
     });
-
     return totalAmount;
   }
 }
-
 
 export default ParsePrice;
