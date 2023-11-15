@@ -40,7 +40,6 @@ const InputView = {
         }
         return ordersInput;
     }
-
 }
 
 export default InputView; 
